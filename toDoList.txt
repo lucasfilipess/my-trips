@@ -1,0 +1,6 @@
+# create a new colors palette 
+# create dark mode 
+# new map colors schema
+# populate the BD with new data
+# take a screenshot with new features and put it on public > img folder using the cover.png name
+# places where I went and places where I not went
