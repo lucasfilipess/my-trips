@@ -1,37 +1,55 @@
 import type { NextPage } from 'next'
-import { useRouter } from 'next/dist/client/router'
 import { TileLayer, Marker, MapConsumer } from 'react-leaflet'
+import { useRouter } from 'next/dist/client/router'
+import useTheme from 'hooks/useTheme'
 import L from 'leaflet'
 import * as Styles from './styles'
 
-export type Place = {
+export type LocationProps = {
+  latitude: number
+  longitude: number
+}
+
+export type PlaceProps = {
   id: string
   name: string
   slug: string
-  location: {
-    latitude: number
-    longitude: number
-  }
+  visited: boolean
+  location: LocationProps
 }
+
 export type Props = {
-  places?: Place[]
+  places?: PlaceProps[]
 }
 
 const Map: NextPage<Props> = ({ places }) => {
   const router = useRouter()
+  const { theme } = useTheme()
   const MAPBOX_API_KEY = process.env.NEXT_PUBLIC_MAPBOX_API_KEY
   const MAPBOX_USERID = process.env.NEXT_PUBLIC_MAPBOX_USERID
-  const MAPBOX_STYLEID = process.env.NEXT_PUBLIC_MAPBOX_STYLEID
+  const MAPBOX_LIGHT_STYLEID = process.env.NEXT_PUBLIC_MAPBOX_LIGHT_STYLEID
+  const MAPBOX_DARK_STYLEID = process.env.NEXT_PUBLIC_MAPBOX_DARK_STYLEID
+  const MAPBOX_STYLEID =
+    theme === 'light'
+      ? MAPBOX_LIGHT_STYLEID
+      : theme === 'dark' && MAPBOX_DARK_STYLEID
 
   const getScreenWidth = (): number =>
     window.innerWidth ||
     document.documentElement.clientWidth ||
     document.body.clientWidth
 
-  const markerIcon = new L.Icon({
-    iconUrl: 'img/icon-192.png',
+  const visitedIcon = new L.Icon({
+    iconUrl: 'img/pin-success.png',
     iconSize: [40, 40],
-    iconAnchor: [20, 20],
+    iconAnchor: [20, 40],
+    popupAnchor: [0, -40]
+  })
+
+  const notVisitedIcon = new L.Icon({
+    iconUrl: 'img/pin-danger.png',
+    iconSize: [40, 40],
+    iconAnchor: [20, 40],
     popupAnchor: [0, -40]
   })
 
@@ -66,10 +84,10 @@ const Map: NextPage<Props> = ({ places }) => {
           }}
         </MapConsumer>
         <CustomTileLayer />
-        {places?.map(({ id, name, location, slug }) => (
+        {places?.map(({ id, name, location, slug, visited }) => (
           <Marker
             key={`place-${id}`}
-            icon={markerIcon}
+            icon={visited ? visitedIcon : notVisitedIcon}
             position={[location.latitude, location.longitude]}
             title={name}
             eventHandlers={{

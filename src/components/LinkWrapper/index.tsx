@@ -6,11 +6,16 @@ import * as Styles from './styles'
 export type Props = {
   href: string
   children: ReactNode
+  position?: 'large' | 'medium'
 }
 
-const LinkWrapper: NextPage<Props> = ({ children, href }) => {
+const LinkWrapper: NextPage<Props> = ({
+  children,
+  href,
+  position = 'large'
+}) => {
   return (
-    <Styles.Wrapper>
+    <Styles.Wrapper position={position}>
       <Link href={href}>{children}</Link>
     </Styles.Wrapper>
   )

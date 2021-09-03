@@ -1,11 +1,25 @@
 import type { NextPage } from 'next'
-import { ThemeProvider } from 'styled-components'
-import { defaultTheme } from './variants'
+import {
+  ThemeProvider as StyledComponentsThemeProvider,
+  DefaultTheme
+} from 'styled-components'
+import useTheme from 'hooks/useTheme'
+import { lightTheme, darkTheme } from './variants'
 
-export const currentTheme = defaultTheme
+export let currentTheme: DefaultTheme = {} as DefaultTheme
 
-const Theme: NextPage = ({ children }) => {
-  return <ThemeProvider theme={currentTheme}>{children}</ThemeProvider>
+const ThemeProvider: NextPage = ({ children }) => {
+  const { theme } = useTheme()
+  if (theme === 'light') {
+    currentTheme = lightTheme
+  } else if (theme === 'dark') {
+    currentTheme = darkTheme
+  }
+  return (
+    <StyledComponentsThemeProvider theme={currentTheme}>
+      {children}
+    </StyledComponentsThemeProvider>
+  )
 }
 
-export default Theme
+export default ThemeProvider

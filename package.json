@@ -9,14 +9,14 @@
     "lint": "next lint",
     "eslint": "eslint src --max-warnings=0",
     "prepare": "husky install",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "test:watch": "yarn test --watch",
     "codegen": "graphql-codegen --config codegen.yml"
   },
   "lint-staged": {
     "src/**/*": [
       "yarn eslint --fix",
-      "yarn test --findRelatedTests --bail"
+      "yarn test --findRelatedTests --passWithNoTests --bail"
     ]
   },
   "dependencies": {
@@ -32,6 +32,7 @@
     "react-dom": "17.0.2",
     "react-leaflet": "^3.2.1",
     "react-loader-spinner": "^4.0.0",
+    "react-switch": "^6.0.0",
     "sharp": "^0.29.0",
     "styled-components": "^5.3.1"
   },

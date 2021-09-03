@@ -1735,6 +1735,7 @@ export type Place = Node & {
   slug: Scalars['String'];
   location: Location;
   description?: Maybe<RichText>;
+  visited: Scalars['Boolean'];
   /** User that created this document */
   createdBy?: Maybe<User>;
   /** User that last updated this document */
@@ -1811,6 +1812,7 @@ export type PlaceCreateInput = {
   slug: Scalars['String'];
   location: LocationInput;
   description?: Maybe<Scalars['RichTextAST']>;
+  visited: Scalars['Boolean'];
   gallery: AssetCreateManyInlineInput;
 };
 
@@ -1949,6 +1951,9 @@ export type PlaceManyWhereInput = {
   slug_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   slug_not_ends_with?: Maybe<Scalars['String']>;
+  visited?: Maybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  visited_not?: Maybe<Scalars['Boolean']>;
   createdBy?: Maybe<UserWhereInput>;
   updatedBy?: Maybe<UserWhereInput>;
   publishedBy?: Maybe<UserWhereInput>;
@@ -1969,7 +1974,9 @@ export enum PlaceOrderByInput {
   NameAsc = 'name_ASC',
   NameDesc = 'name_DESC',
   SlugAsc = 'slug_ASC',
-  SlugDesc = 'slug_DESC'
+  SlugDesc = 'slug_DESC',
+  VisitedAsc = 'visited_ASC',
+  VisitedDesc = 'visited_DESC'
 }
 
 export type PlaceUpdateInput = {
@@ -1977,6 +1984,7 @@ export type PlaceUpdateInput = {
   slug?: Maybe<Scalars['String']>;
   location?: Maybe<LocationInput>;
   description?: Maybe<Scalars['RichTextAST']>;
+  visited?: Maybe<Scalars['Boolean']>;
   gallery?: Maybe<AssetUpdateManyInlineInput>;
 };
 
@@ -2000,6 +2008,7 @@ export type PlaceUpdateManyInlineInput = {
 export type PlaceUpdateManyInput = {
   name?: Maybe<Scalars['String']>;
   description?: Maybe<Scalars['RichTextAST']>;
+  visited?: Maybe<Scalars['Boolean']>;
 };
 
 export type PlaceUpdateManyWithNestedWhereInput = {
@@ -2157,6 +2166,9 @@ export type PlaceWhereInput = {
   slug_ends_with?: Maybe<Scalars['String']>;
   /** All values not ending with the given string */
   slug_not_ends_with?: Maybe<Scalars['String']>;
+  visited?: Maybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  visited_not?: Maybe<Scalars['Boolean']>;
   createdBy?: Maybe<UserWhereInput>;
   updatedBy?: Maybe<UserWhereInput>;
   publishedBy?: Maybe<UserWhereInput>;
@@ -2897,11 +2909,11 @@ export type GetPlacesQueryVariables = Exact<{
 }>;
 
 
-export type GetPlacesQuery = { __typename?: 'Query', places: Array<{ __typename?: 'Place', id: string, slug: string, name: string, location: { __typename?: 'Location', latitude: number, longitude: number }, description?: Maybe<{ __typename?: 'RichText', html: string, text: string }>, gallery: Array<{ __typename?: 'Asset', id: string, url: string, height?: Maybe<number>, width?: Maybe<number> }> }> };
+export type GetPlacesQuery = { __typename?: 'Query', places: Array<{ __typename?: 'Place', id: string, slug: string, name: string, visited: boolean, location: { __typename?: 'Location', latitude: number, longitude: number }, description?: Maybe<{ __typename?: 'RichText', html: string, text: string }>, gallery: Array<{ __typename?: 'Asset', id: string, url: string, height?: Maybe<number>, width?: Maybe<number> }> }> };
 
 export type GetPlaceBySlugQueryVariables = Exact<{
   slug: Scalars['String'];
 }>;
 
 
-export type GetPlaceBySlugQuery = { __typename?: 'Query', place?: Maybe<{ __typename?: 'Place', id: string, slug: string, name: string, location: { __typename?: 'Location', latitude: number, longitude: number }, description?: Maybe<{ __typename?: 'RichText', html: string, text: string }>, gallery: Array<{ __typename?: 'Asset', id: string, url: string, height?: Maybe<number>, width?: Maybe<number> }> }> };
+export type GetPlaceBySlugQuery = { __typename?: 'Query', place?: Maybe<{ __typename?: 'Place', id: string, slug: string, name: string, visited: boolean, location: { __typename?: 'Location', latitude: number, longitude: number }, description?: Maybe<{ __typename?: 'RichText', html: string, text: string }>, gallery: Array<{ __typename?: 'Asset', id: string, url: string, height?: Maybe<number>, width?: Maybe<number> }> }> };

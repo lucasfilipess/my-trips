@@ -9,9 +9,13 @@ export const Container = styled.section`
   max-width: ${({ theme }) => theme.width.container};
 `
 
-export const Heading = styled.h1`
-  font-size: ${({ theme }) => theme.sizes.large};
+export const Heading = styled.div`
+  display: flex;
+  align-items: center;
   margin-bottom: ${({ theme }) => theme.sizes.large};
+  h1 {
+    font-size: ${({ theme }) => theme.sizes.large};
+  }
 `
 
 export const Body = styled.div`

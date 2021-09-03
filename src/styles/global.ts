@@ -14,7 +14,7 @@ const GlobalStyle = createGlobalStyle`
   html, body, #__next {
     height: 100%;
     background: ${({ theme }) => theme.colors.background};
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.text};
   }
 
   body{

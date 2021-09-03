@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/dist/client/router'
 import { NextSeo } from 'next-seo'
 import { CloseOutline } from '@styled-icons/evaicons-outline/CloseOutline'
+import { DoneAllOutline } from '@styled-icons/evaicons-outline/DoneAllOutline'
 import LinkWrapper from 'components/LinkWrapper'
 import Loader from 'components/Loader'
 import * as Styles from './styles'
@@ -23,6 +24,7 @@ export type PlaceProps = {
   id: string
   slug: string
   name: string
+  visited: boolean
   description?: DescriptionProps
   gallery: GalleryProps[]
 }
@@ -61,10 +63,17 @@ const PlacesTemplate: NextPage<Props> = ({ place }) => {
       />
       <Styles.Wrapper>
         <Styles.Container>
-          <LinkWrapper href="/">
+          <LinkWrapper position="medium" href="/">
             <CloseOutline size={32} aria-label="close" />
           </LinkWrapper>
-          <Styles.Heading>{place.name}</Styles.Heading>
+          <Styles.Heading>
+            {place.visited ? (
+              <DoneAllOutline size={57} aria-label="checked" color="#0d7445" />
+            ) : (
+              <CloseOutline size={57} aria-label="close" color="#EE3840" />
+            )}
+            <h1>{place.name}</h1>
+          </Styles.Heading>
           <Styles.Body
             dangerouslySetInnerHTML={{ __html: place.description?.html ?? '' }}
           />

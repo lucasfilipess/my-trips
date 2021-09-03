@@ -5,7 +5,8 @@ declare module 'styled-components' {
     colors: {
       highlight: string
       background: string
-      white: string
+      map: string
+      text: string
     }
     sizes: {
       small: string

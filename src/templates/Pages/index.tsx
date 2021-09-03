@@ -11,7 +11,7 @@ export type Props = {
 const PagesTemplate: NextPage<Props> = ({ body, heading }) => {
   return (
     <Styles.Content>
-      <LinkWrapper href="/">
+      <LinkWrapper position="medium" href="/">
         <CloseOutline size={32} aria-label="close" />
       </LinkWrapper>
       <Styles.Heading>{heading}</Styles.Heading>

@@ -2,9 +2,10 @@ import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import { DefaultSeo } from 'next-seo'
 import SEO from '../../next-seo.config'
+import ThemeProvider from 'theme'
+import AppProvider from 'context'
 import Progress from 'components/Progress'
 import GlobalStyle from 'styles/global'
-import Theme from 'theme'
 
 const App = ({ Component, pageProps }: AppProps) => {
   return (
@@ -21,11 +22,13 @@ const App = ({ Component, pageProps }: AppProps) => {
         />
       </Head>
       <DefaultSeo {...SEO} />
-      <Theme>
-        <GlobalStyle />
-        <Progress />
-        <Component {...pageProps} />
-      </Theme>
+      <AppProvider>
+        <ThemeProvider>
+          <GlobalStyle />
+          <Progress />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </AppProvider>
     </>
   )
 }
