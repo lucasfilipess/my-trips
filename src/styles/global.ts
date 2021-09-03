@@ -29,6 +29,10 @@ const GlobalStyle = createGlobalStyle`
 
   a{
     color: ${({ theme }) => theme.colors.highlight};
+    transition: filter 0.3s;
+    &:hover {
+      filter: brightness(0.8);
+    }
   }
 
   ::-webkit-scrollbar {

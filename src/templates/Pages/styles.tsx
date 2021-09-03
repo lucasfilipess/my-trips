@@ -7,7 +7,8 @@ export const Content = styled.section`
   height: 100vh;
   justify-content: center;
   margin: auto;
-  max-width: ${({ theme }) => theme.width.container};
+  /* max-width: ${({ theme }) => theme.width.container}; */
+  max-width: 110rem;
   text-align: center;
 `
 
@@ -17,8 +18,9 @@ export const Heading = styled.h1`
 `
 
 export const Body = styled.div`
-  p {
+  p,
+  a {
     font-size: ${({ theme }) => theme.sizes.medium};
-    line-height: ${({ theme }) => theme.sizes.medium};
+    line-height: ${({ theme }) => theme.sizes.large};
   }
 `

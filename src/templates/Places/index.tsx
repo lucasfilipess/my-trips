@@ -84,7 +84,7 @@ const PlacesTemplate: NextPage<Props> = ({ place }) => {
                 alt={place.name}
                 height={600}
                 src={url}
-                quality={75}
+                quality={100}
                 width={1000}
               />
             ))}
