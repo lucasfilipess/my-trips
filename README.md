@@ -1,6 +1,26 @@
-## My Trips
 
+# My Trips 
 > A simple website to show pinned places that you went or you want to go
+<p align="center">
+  <img alt="My Trips" src="./public/img/screen1.png" >
+</p>
+<p align="center">
+  <img alt="My Trips" src="./public/img/screen2.png" >
+</p>
+<p align="center">
+  <img alt="My Trips" src="./public/img/screen3.png" >
+</p>
+<p align="center">
+  <img alt="My Trips" src="./public/img/screen4.png" >
+</p>
+<br/>
+
+- [Next.js ](https://nextjs.org/docs) - Learn about Next.js features and API.
+- [Graphql](https://graphql.org/) - A query language for your API
+- [Styled-components](https://styled-components.com/) - Utilising tagged template literals (a recent addition to JavaScript) and the power of CSS, styled-components allows you to write actual CSS code to style your components.
+- [React Leaflet](https://react-leaflet.js.org/) - React components for Leaflet maps
+- [PWA](https://github.com/shadowwalker/next-pwa) - Generate PWA
+<br/>
 
 ## Getting Started
 ### Graphql Server
