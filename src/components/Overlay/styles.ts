@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components'
 
 type Props = {
-  open: 'true' | 'false'
+  open: boolean
 }
 
 type IconProps = {
@@ -10,7 +10,7 @@ type IconProps = {
 
 export const Wrapper = styled.div<Props>`
   ${({ open }) =>
-    open === 'true'
+    open
       ? css`
           background: rgba(0, 0, 0, 0.3);
           bottom: 0;
@@ -28,7 +28,7 @@ export const Wrapper = styled.div<Props>`
 `
 export const Sidebar = styled.div<Props>`
   ${({ open }) =>
-    open === 'true'
+    open
       ? css`
           background: ${({ theme }) => theme.colors.background};
           bottom: 0;

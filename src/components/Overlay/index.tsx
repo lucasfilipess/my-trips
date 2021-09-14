@@ -15,7 +15,6 @@ export type Props = {
 const Overlay: NextPage = () => {
   const { theme, handleSetTheme } = useTheme()
   const [sideBar, toggleSidebar] = useToggle(false)
-  const open = sideBar ? 'true' : 'false'
 
   const handleSwitchChange = () => {
     if (theme === 'light') {
@@ -30,8 +29,8 @@ const Overlay: NextPage = () => {
       <Styles.MenuButton onClick={toggleSidebar}>
         <Menu2Outline size={32} aria-label="close" />
       </Styles.MenuButton>
-      <Styles.Wrapper open={open} onClick={toggleSidebar} />
-      <Styles.Sidebar open={open}>
+      <Styles.Wrapper open={sideBar} onClick={toggleSidebar} />
+      <Styles.Sidebar open={sideBar}>
         <Styles.Body>
           <Styles.Header>
             <Styles.Heading>My Trips</Styles.Heading>

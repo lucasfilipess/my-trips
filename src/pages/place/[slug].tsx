@@ -4,7 +4,7 @@ import { useRouter } from 'next/dist/client/router'
 import PlacesTemplate, { Props as PlaceProps } from 'templates/Places'
 import Loader from 'components/Loader'
 import { GET_PLACES, GET_PLACE_BY_SLUG } from 'graphql/queries'
-import { GetPlaceBySlugQuery, GetPlacesQuery } from 'graphql/generated/graphql'
+import { GetPlacesBySlugQuery, GetPlacesQuery } from 'graphql/generated/graphql'
 
 const Place: NextPage<PlaceProps> = ({ place }) => {
   const { isFallback } = useRouter()
@@ -13,17 +13,17 @@ const Place: NextPage<PlaceProps> = ({ place }) => {
 }
 
 export const getStaticPaths = async () => {
-  const { places } = await client.request<GetPlacesQuery>(GET_PLACES, {
+  const { place } = await client.request<GetPlacesQuery>(GET_PLACES, {
     first: 3
   })
-  const paths = places.map(({ slug }) => ({
+  const paths = place.map(({ slug }) => ({
     params: { slug }
   }))
   return { paths, fallback: true }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { place } = await client.request<GetPlaceBySlugQuery>(
+  const { place } = await client.request<GetPlacesBySlugQuery>(
     GET_PLACE_BY_SLUG,
     {
       slug: params?.slug
@@ -33,7 +33,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     revalidate: 5,
     props: {
-      place
+      place: place[0]
     }
   }
 }

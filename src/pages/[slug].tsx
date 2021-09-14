@@ -4,7 +4,7 @@ import { useRouter } from 'next/dist/client/router'
 import PagesTemplate, { Props as PageProps } from 'templates/Pages'
 import Loader from 'components/Loader'
 import { GET_PAGES, GET_PAGE_BY_SLUG } from 'graphql/queries'
-import { GetPageBySlugQuery, GetPagesQuery } from 'graphql/generated/graphql'
+import { GetPagesBySlugQuery, GetPagesQuery } from 'graphql/generated/graphql'
 
 const Page: NextPage<PageProps> = ({ body, heading }) => {
   const { isFallback } = useRouter()
@@ -15,22 +15,22 @@ const Page: NextPage<PageProps> = ({ body, heading }) => {
 }
 
 export const getStaticPaths = async () => {
-  const { pages } = await client.request<GetPagesQuery>(GET_PAGES, { first: 3 })
-  const paths = pages.map(({ slug }) => ({
+  const { page } = await client.request<GetPagesQuery>(GET_PAGES, { first: 3 })
+  const paths = page.map(({ slug }) => ({
     params: { slug }
   }))
   return { paths, fallback: true }
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { page } = await client.request<GetPageBySlugQuery>(GET_PAGE_BY_SLUG, {
+  const { page } = await client.request<GetPagesBySlugQuery>(GET_PAGE_BY_SLUG, {
     slug: params?.slug
   })
   if (!page) return { notFound: true }
   return {
     props: {
-      body: page.body.html,
-      heading: page.heading
+      body: page[0].body,
+      heading: page[0].heading
     }
   }
 }

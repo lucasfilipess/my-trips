@@ -2,33 +2,29 @@ import { gql } from 'graphql-request'
 
 export const GET_PAGES = gql`
   query getPages($first: Int) {
-    pages(first: $first) {
+    page(first: $first) {
       id
       heading
       slug
-      body {
-        html
-      }
+      body
     }
   }
 `
 
 export const GET_PAGE_BY_SLUG = gql`
-  query getPageBySlug($slug: String!) {
-    page(where: { slug: $slug }) {
+  query getPagesBySlug($slug: String) {
+    page(slug: $slug) {
       id
       heading
       slug
-      body {
-        html
-      }
+      body
     }
   }
 `
 
 export const GET_PLACES = gql`
   query getPlaces($first: Int) {
-    places(first: $first) {
+    place(first: $first) {
       id
       slug
       name
@@ -37,23 +33,18 @@ export const GET_PLACES = gql`
         latitude
         longitude
       }
-      description {
-        html
-        text
-      }
+      description
       gallery {
         id
         url
-        height
-        width
       }
     }
   }
 `
 
 export const GET_PLACE_BY_SLUG = gql`
-  query getPlaceBySlug($slug: String!) {
-    place(where: { slug: $slug }) {
+  query getPlacesBySlug($slug: String) {
+    place(slug: $slug) {
       id
       slug
       name
@@ -62,15 +53,10 @@ export const GET_PLACE_BY_SLUG = gql`
         latitude
         longitude
       }
-      description {
-        html
-        text
-      }
+      description
       gallery {
         id
         url
-        height
-        width
       }
     }
   }

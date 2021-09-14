@@ -10,11 +10,11 @@ const Home: NextPage<MapProps> = ({ places }) => {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const { places } = await client.request<GetPlacesQuery>(GET_PLACES)
+  const { place } = await client.request<GetPlacesQuery>(GET_PLACES)
   return {
     revalidate: 5,
     props: {
-      places
+      places: place
     }
   }
 }

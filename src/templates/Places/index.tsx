@@ -11,13 +11,6 @@ import * as Styles from './styles'
 export type GalleryProps = {
   id: string
   url: string
-  height: number
-  width: number
-}
-
-export type DescriptionProps = {
-  html: string
-  text: string
 }
 
 export type PlaceProps = {
@@ -25,7 +18,7 @@ export type PlaceProps = {
   slug: string
   name: string
   visited: boolean
-  description?: DescriptionProps
+  description?: string
   gallery: GalleryProps[]
 }
 
@@ -41,7 +34,7 @@ const PlacesTemplate: NextPage<Props> = ({ place }) => {
       <NextSeo
         title={`${place.name} - My Trips`}
         description={
-          place.description?.text ||
+          place?.description ||
           'A simple project to show in a map the places that I went and show more information and photos when clicked.'
         }
         canonical="https://mytrips.com"
@@ -49,13 +42,13 @@ const PlacesTemplate: NextPage<Props> = ({ place }) => {
           url: 'https://mytrips.com',
           title: `${place.name} - My Trips`,
           description:
-            place.description?.text ||
+            place?.description ||
             'A simple project to show in a map the places that I went and show more information and photos when clicked.',
           images: [
             {
               url: place.gallery[0].url,
-              width: place.gallery[0].width,
-              height: place.gallery[0].height,
+              width: 1000,
+              height: 600,
               alt: `${place.name}`
             }
           ]
@@ -75,7 +68,7 @@ const PlacesTemplate: NextPage<Props> = ({ place }) => {
             <h1>{place.name}</h1>
           </Styles.Heading>
           <Styles.Body
-            dangerouslySetInnerHTML={{ __html: place.description?.html ?? '' }}
+            dangerouslySetInnerHTML={{ __html: place?.description ?? '' }}
           />
           <Styles.Gallery>
             {place.gallery.map(({ id, url }) => (
