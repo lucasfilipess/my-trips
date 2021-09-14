@@ -3,37 +3,12 @@
 > A simple website to show pinned places that you went or you want to go
 
 ## Getting Started
+### Graphql Server
 
-### GraphCMS
-
-This project uses [GraphCMS](https://graphcms.com/), so you need to create an account there first.
-
-After you need to create the Schema, just follow the steps:
-
-- Schema > Add New Model with `Place` name
-- And add the following fields:
-  - `Single Line Text` as `name`
-  - `Slug` as `slug`
-  - `Map` as `location`
-  - `Rich Text` as `description`
-  - `Asset Picker` as `gallery`
-
-- Schema > Add New Model with `Page` name
-- And add the following fields:
-  - `Single Line Text` as `heading`
-  - `Slug` as `slug`
-  - `Rich Text` as `body`
-
-After that, fill some values and don't forget to `publish`!
-
-#### Authentication
-
-In order to create a token access, go to `Settings > API Access`, inside this page, find `Permanent Auth Tokens`,
-create a Token Name and mark all queries possible. Save and get the token.
-
+This project uses [Graphql server](https://github.com/lucasfilipess/my-trips-graphql), so you need to run the server first.
 ### NextJS
 
-After creating your account on [GraphCMS](https://graphcms.com/) and following the steps above, you just need to rename
+After run the [Graphql server](https://github.com/lucasfilipess/my-trips-graphql) and following the steps above, you just need to rename
 the `.env.example` to `.env.local` (if you plan to run locally) and edit the keys there.
 
 With all set, you can start the application with:
@@ -56,9 +31,6 @@ You can start editing the page by modifying `pages/index.js`. The page auto-upda
 - `lint`: runs the linter in all components and pages
 - `test`: runs jest to test all components and pages
 - `test:watch`: runs jest in watch mode
-- `storybook`: runs storybook on `localhost:6006`
-- `build-storybook`: create the build version of storybook
-
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:
@@ -67,9 +39,3 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
